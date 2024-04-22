@@ -8,7 +8,7 @@ public class TableOptions
     }
     
     public int PingIntervalMilliseconds { get; set; } = 5000;
-    public int RefreshIntervalMilliseconds { get; set; } = 300000;
+    public int RefreshIntervalMilliseconds { get; set; } = 10_000;
     public int LookupTimeoutMilliseconds { get; set; } = 10000;
     public int MaxAllowedFailures { get; set; } = 3;
     public int ReplacementCacheSize { get; set; } = 200;

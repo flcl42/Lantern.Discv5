@@ -26,6 +26,7 @@ public class LookupManager(IRoutingTable routingTable,
 
     public async Task<List<IEnr>?> LookupAsync(byte[] targetNodeId)
     {
+        _logger.LogWarning($"LookupAsync: {Convert.ToHexString(targetNodeId)}");
         if (IsLookupInProgress)
         {
             _logger.LogInformation("Lookup is currently in progress");

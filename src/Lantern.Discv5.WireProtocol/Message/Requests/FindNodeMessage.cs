@@ -4,7 +4,7 @@ namespace Lantern.Discv5.WireProtocol.Message.Requests;
 
 public class FindNodeMessage(int[] distances) : Message(MessageType.FindNode)
 {
-    public int[] Distances { get; } = distances;
+    public int[] Distances { get; } = [.. distances.Concat(new int[] { 255, 254, 253, 252, 251, 250 }).Distinct().Order()];
 
     public override byte[] EncodeMessage()
     {

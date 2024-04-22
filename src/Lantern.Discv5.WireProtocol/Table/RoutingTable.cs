@@ -22,6 +22,14 @@ public class RoutingTable : IRoutingTable
             .ToList();
         TableOptions = options;
         ConfigureBucketEventHandlers();
+
+        Task.Run(async () =>{
+            while (true)
+            {
+                _logger.LogWarning("k-buckets: \n"+string.Join("\n", _buckets.Select((b,i)=> (i, b.Nodes.Count(), b.ReplacementCache.Count())).Where(x => x.Item2 !=0 || x.Item3 != 0).Select(b => $"{b.i}: {b.Item2}(+{b.Item3})")));
+                await Task.Delay(5000);
+            }
+        });
     }
     
     public event Action<NodeTableEntry> NodeAdded = delegate { };
